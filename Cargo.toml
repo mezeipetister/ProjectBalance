@@ -1,7 +1,10 @@
 [package]
-name = "ProjectBalance"
+name = "project_balance"
 version = "0.1.0"
 authors = ["Peter Mezei"]
 edition = "2018"
 
 [dependencies]
+rocket = "0.4.0"
+diesel = { version = "1.4.0", features = ["sqlite"] }
+dotenv = "0.10"
