@@ -1,10 +1,9 @@
 CREATE TABLE transactions (
-  id INTEGER NOT NULL PRIMARY KEY,
+  id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR NOT NULL,
-  body TEXT NOT NULL,
   debit INTEGER NOT NULL,
   credit INTEGER NOT NULL,
   payment INTEGER NOT NULL,
-  time_created TEXT DEFAULT (datetime('now', 'localtime'))
+  time_created timestamptz NOT NULL default current_timestamp
 )
 -- Your SQL goes here

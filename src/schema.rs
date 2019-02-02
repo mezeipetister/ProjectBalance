@@ -1,11 +1,10 @@
 table! {
     transactions (id) {
-        id -> Integer,
-        title -> Text,
-        body -> Text,
-        debit -> Integer,
-        credit -> Integer,
-        payment -> Integer,
-        time_created -> Nullable<Text>,
+        id -> Int4,
+        title -> Varchar,
+        debit -> Int4,
+        credit -> Int4,
+        payment -> Int4,
+        time_created -> Timestamptz,
     }
 }

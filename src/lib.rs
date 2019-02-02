@@ -9,23 +9,30 @@ use diesel::prelude::*;
 use dotenv::dotenv;
 use std::env;
 
-use self::models::NewTransaction;
+use self::models::{Transaction, NewTransaction};
 
-pub fn establish_connection() -> SqliteConnection {
+// Database connection
+pub fn establish_connection() -> PgConnection {
     dotenv().ok();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    SqliteConnection::establish(&database_url)
+    PgConnection::establish(&database_url)
         .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
 }
 
-pub fn create_post(conn: &SqliteConnection, title: &str, body: &str, debit: i32, credit: i32, payment: i32) -> usize {
+// Create transaction
+pub fn create_transaction<'a>(conn: &PgConnection, title: &'a str, debit: i32, credit: i32, payment: i32) -> Transaction {
     use schema::transactions;
-
-    let new_transaction = NewTransaction { title, body, debit, credit, payment };
-
+    
+    let new_transaction = NewTransaction {
+            title: title,
+            debit: debit,
+            credit: credit,
+            payment: payment,
+    };
+    
     diesel::insert_into(transactions::table)
         .values(&new_transaction)
-        .execute(conn)
-        .expect("Error saving new transaction")
+        .get_result(conn)
+        .expect("Error inserting new transaction.")
 }
