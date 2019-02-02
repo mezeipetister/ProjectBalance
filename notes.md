@@ -40,4 +40,4 @@ The second is chrono::NaiveDateTime. This is probably the type you want. In orde
 
 ```
 
-Made with (L) by Peter Mezei 2019.
+Made with (L) by Peter Mezei 2019. 
