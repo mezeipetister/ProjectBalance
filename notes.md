@@ -39,3 +39,5 @@ The second is chrono::NaiveDateTime. This is probably the type you want. In orde
 (Technically there's a third type, which is diesel::data_types::PgTimestamp but that's almost certainly not what you want, as that struct is just the literal representation of timestamp in the database so other types don't have to worry about raw bytes)
 
 ```
+
+Made with (L) by Peter Mezei 2019.
