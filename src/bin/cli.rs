@@ -1,11 +1,11 @@
-extern crate project_balance;
 extern crate diesel;
+extern crate project_balance;
 
-use self::project_balance::*;
-use std::io::{stdin, Read};
+use self::project_balance::{create_transaction, establish_connection};
+use std::io::stdin;
 
 fn main() {
-   let connection = establish_connection();
+    let connection = establish_connection();
 
     println!("Title?");
     let mut title = String::new();
@@ -25,5 +25,10 @@ fn main() {
     let payment: i32 = payment.trim().parse().expect("invalid input");
 
     let new_item = create_transaction(&connection, title, debit, credit, payment);
-    println!("\nSaved transaction with id {} and timestamp {}", new_item.id, new_item.time_created);
+    println!(
+        "\nSaved transaction with id {} and timestamp {}, title: {}",
+        new_item.id,
+        new_item.time_created,
+        new_item.get_title()
+    );
 }

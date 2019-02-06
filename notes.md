@@ -41,3 +41,38 @@ The second is chrono::NaiveDateTime. This is probably the type you want. In orde
 ```
 
 Made with (L) by Peter Mezei 2019.
+
+@azonosító/ID  T161/ID    K3841/ID   5500
+
+# Design plan
+
+```rust
+pub struct Transaction {
+    pub id: i32,
+    pub debit: i32,
+    pub credit: i32,
+    pub payment: i32,
+    pub event: String,
+    pub time_made: i32
+    pub time_created: i32
+}
+```
+
+Folyamat:
+- Zárás
+- Nyitás (Feltétele a verzió váltásnak)
+
+Funkciók
+-! Több könyvelés kezelése
+-! Kontír tétel hozzáadása
+-! Bruttó elszámolás - csak hozzá adni lehet, törölni és módosítani nem
+-! Nyitás
+-! Zárás
+-! Számlakeret listázása
+-! Számlakeret szerkesztése
+  -! Új létrehozása
+  -! Törlés - csak! ha az egyenlege nulla
+-! főkönyv lekérdezése hónap alapján
+-! számla egyenleg lekérdezés
+- főkönyvi karton lekérdezés
+- karton kezelésa
