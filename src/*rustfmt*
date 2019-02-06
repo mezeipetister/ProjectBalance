@@ -1,0 +1,15 @@
+error: this file contains an un-closed delimiter
+  --> <stdin>:14:5
+   |
+13 | fn say_hello(person: Person) -> 'str {
+   |                                      - un-closed delimiter
+14 |     
+   |     ^
+
+error: expected type, found `'str`
+  --> <stdin>:13:33
+   |
+13 | fn say_hello(person: Person) -> 'str {
+   |                                 ^^^^
+
+Error writing files: parse error

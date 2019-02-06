@@ -74,5 +74,6 @@ pub fn create_transaction<'a>(
 }
 
 pub fn demo_function() {
-    let a = "HelloBello".to_string();
+    let _a = "HelloBello".to_string();
+    println!("Say: {}",_a)
 }
