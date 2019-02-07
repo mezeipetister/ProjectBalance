@@ -1,13 +1,13 @@
 // Copyright (C) 2019 by Peter Mezei
 
 enum Human {
-    BOY,
+    // BOY,
     GIRL,
 }
 
 #[derive(Debug)]
 enum Colors {
-    RED = 1,
+    // RED = 1,
     GREEN = 2,
 }
 
