@@ -1,20 +1,11 @@
-/// DEMO RS FILE
+// Copyright (C) 2019 by Peter Mezei
 
-fn main() {
-    let name = "People".to_string();
-    println!("Hi {}!", name);
+extern crate project_balance;
+use project_balance::*;
 
-    println!("Hi {}!",say_hello(Person::BOY("PETI".to_string())));
-}
-
-enum Person {
-    BOY(String),
-    GIRL(String)
-}
-
-fn say_hello(person: Person) -> String {
-    match person {
-        Person::BOY(name) => name,
-        Person::GIRL(name) => name
+fn main(){
+    let items = [1,2,3,4,5];
+    for item in &items {
+        print("{}", item);
     }
 }
