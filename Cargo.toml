@@ -5,7 +5,4 @@ authors = ["Peter Mezei"]
 edition = "2018"
 
 [dependencies]
-diesel = { version = "1.4.1", features = ["postgres", "chrono"] }
-dotenv = "0.13.0"
-chrono = "0.4.6"
-cursive = "0.10.0"
+
