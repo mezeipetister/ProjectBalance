@@ -1,3 +1,4 @@
+/// Main function
 fn main() {
     println!("HelloWorld!");
     for item in 1..100 {
