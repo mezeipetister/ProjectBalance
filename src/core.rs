@@ -28,15 +28,15 @@ impl Account {
     }
     pub fn credit(&mut self, value: u32) {
         self.c_total += value;
-        self.balance += value as i32;
+        self.balance -= value as i32;
     }
     pub fn debit(&mut self, value: u32) {
         self.d_total += value;
-        self.balance -= value as i32;
+        self.balance += value as i32;
     }
-    pub fn debit_from(&mut self, account: &mut Account, value: u32) {
-        self.credit(value);
-        account.debit(value);
+    pub fn credit_from(&mut self, account: &mut Account, value: u32) {
+        self.debit(value);
+        account.credit(value);
     }
     pub fn get_account_id(&self) -> u32 {
         self.account_id
@@ -54,10 +54,10 @@ impl Account {
 
 pub fn print_account_details(account: Account) {
     println!(
-        "Account ({}) => balance: {}, credit total: {}, debit total: {}",
+        "Account ({}) => balance: {}, debit total: {}, credit total: {}",
         account.get_account_id(),
         account.get_balance(),
+        account.get_d_total(),
         account.get_c_total(),
-        account.get_d_total()
     );
 }

@@ -10,11 +10,10 @@ fn main() {
     let mut bank = Account::new(3811);
     let mut assets = Account::new(1);
 
-    bank.debit_from(&mut income, 10000);
-    assets.debit_from(&mut bank, 3000);
+    bank.credit_from(&mut income, 10000);
+    assets.credit_from(&mut bank, 3000);
 
     print_account_details(income);
     print_account_details(bank);
     print_account_details(assets);
 }
-
