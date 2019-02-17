@@ -2,36 +2,19 @@
 // https://github.com/mezeipetister
 // For more details please check the readme and LICENSE files enclosed.
 
-/// Main function
-/// Hello bello
-///
-/// # Examples
-/// ```rust
-/// let a = 1;
-/// let b = 2;
-/// assert_eq!(a+b,3);
-/// ```
-// Hello Bello
-use std::fs::{File, OpenOptions};
-use std::path::Path;
+extern crate project_balance;
+use project_balance::core::*;
 
 fn main() {
-    println!("HelloWorld!");
-    for item in 1..100 {
-        let _a: i32 = item;
-        println!("{}", _a);
-    }
-    let a = 1 + 2;
-    println!("HelloBello");
-    OpenOptions::new().create(true).write(true)
+    let mut income = Account::new(9);
+    let mut bank = Account::new(3811);
+    let mut assets = Account::new(1);
+
+    bank.debit_from(&mut income, 10000);
+    assets.debit_from(&mut bank, 3000);
+
+    print_account_details(income);
+    print_account_details(bank);
+    print_account_details(assets);
 }
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn demo_test() {
-        let a = 1;
-        let b = 2;
-        assert_eq!(a + b, 3);
-    }
-}
