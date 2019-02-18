@@ -52,6 +52,14 @@ impl Account {
     }
 }
 
+/// Print account details
+///
+/// Helper function, print details of a given account.
+/// For testing purpose.
+/// 
+/// # Examples
+/// let bank = Account::new(3811);
+/// print_account_details(bank);
 pub fn print_account_details(account: Account) {
     println!(
         "Account ({}) => balance: {}, debit total: {}, credit total: {}",
