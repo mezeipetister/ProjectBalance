@@ -40,17 +40,21 @@ fn main() {
     print_account_details(bank);
     print_account_details(assets);
 
-    // Test section!
-    // Testing: yaml serialization, file write;
+    /// Test section!
+    /// Testing: yaml serialization, file write;
     let mut cart = Cart { bags: Vec::new() };
     add_to_cart(&mut cart, 1, 2);
     add_to_cart(&mut cart, 3, 4);
     add_to_cart(&mut cart, 5, 6);
     add_to_cart(&mut cart, 7, 8);
     println!("{:?}", cart);
+
+    /// Create YAML string!
+    /// We are going to work with this string in the future.
     let s = serde_yaml::to_string(&cart).unwrap();
     println!("{}", s);
 
+    /// Write and serialize string to YAML file!
     let path = Path::new("./log.yaml");
     let display = path.display();
 
@@ -66,6 +70,7 @@ fn main() {
         Ok(_) => println!("successfully wrote to {}", display),
     }
 
+    /// Load YAML to string.
     // Create a path to the desired file
     let path = Path::new("./log.yaml");
     let display = path.display();
@@ -78,6 +83,7 @@ fn main() {
         Ok(file) => file,
     };
 
+    /// Deserialize YAML content.
     // Read the file contents into a string, returns `io::Result<usize>`
     let mut s = String::new();
     match file.read_to_string(&mut s) {
