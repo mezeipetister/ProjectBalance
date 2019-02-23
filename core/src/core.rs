@@ -99,10 +99,25 @@ impl Account {
     ///
     /// # Examples
     /// ```rust
+    /// /**
+    ///  * account_a.get_balance() => 2000;
+    ///  * account_b.get_balance() => 4000;
+    ///  */
     /// let account_a = Account::new(1);
     /// let account_b = Account::new(3);
-    /// // Let's move 1000 from account_b to account_a;
+    ///
+    /// /**
+    ///  * Let's move 1000 from
+    ///  * account_b to account_a;
+    ///  */
     /// account_a.credit_from(account_b, 1000);
+    ///
+    /// /**
+    ///  * Now the new balance(s):
+    ///  *
+    ///  * account_a.get_balance() => 3000;
+    ///  * account_b.get_balance() => 3000;
+    ///  */
     /// ```
     pub fn credit_from(&mut self, account: &mut Account, value: u32) {
         self.debit(value);
