@@ -8,10 +8,8 @@ double enter, or an enter between two paragraph.
 So I found the way, what is accepted in Emacs and in Github:  
 - Using **double space** at the end of a line means new line.
 
-/**
- * Deprecated
- * Not used features, but maybe useful in the future.
- */
+!Deprecated  
+Not used features, but maybe useful in the future.
 
 ## Install DIESEL
 
