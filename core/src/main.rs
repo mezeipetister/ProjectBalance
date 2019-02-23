@@ -10,8 +10,8 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-extern crate project_balance;
-use project_balance::core::*;
+extern crate ledger_core;
+use ledger_core::core::*;
 
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 struct Bag {
@@ -36,10 +36,10 @@ fn main() {
     bank.credit_from(&mut income, 10000);
     assets.credit_from(&mut bank, 3000);
 
-    print_account_details(income);
-    print_account_details(bank);
-    print_account_details(assets);
-
+    income.print_details();
+    bank.print_details();
+    assets.print_details();
+    
     /// Test section!
     /// Testing: yaml serialization, file write;
     let mut cart = Cart { bags: Vec::new() };

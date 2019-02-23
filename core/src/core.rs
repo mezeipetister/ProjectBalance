@@ -10,23 +10,22 @@
 //     }
 // }
 
-/// Account struct
-///
+/// Account struct  
 /// Represents a ledger account.
 pub struct Account {
     /// Account ID. It's given by the accountant,
     /// but it behaves like a consant.
     account_id: u32,
 
-    /// Debit total
+    /// Debit total  
     /// Rolling up the debit total.
     d_total: u32,
 
-    /// Credit total
+    /// Credit total  
     /// Rolling up the credit total.
     c_total: u32,
 
-    /// Balance
+    /// Balance  
     /// debit total - credit total.
     balance: i32,
 }
@@ -47,7 +46,7 @@ pub struct Account {
 impl Account {
     /// Create new instance of Account
     ///
-    /// It's a public function
+    /// It's a public function  
     /// Return a new Account with initial values.
     ///
     /// # Examples
@@ -60,41 +59,41 @@ impl Account {
         Account {
             /// account_id is given by calling ::new(account_id)
             account_id,
-            /// 0 as init value. It is going to get its current value after
+            /// 0 as init value. It is going to get its current value after  
             /// loading data from ledger database.
             d_total: 0,
-            /// 0 as init value. It is going to get its current value after
+            /// 0 as init value. It is going to get its current value after  
             /// loading data from ledger database.
             c_total: 0,
-            /// 0 as init value. It is going to get its current value after
+            /// 0 as init value. It is going to get its current value after  
             /// loading data from ledger database.
             balance: 0,
         }
     }
-    /// Private function, create credit
-    /// It means it makes a credit side transaction,
-    /// So once e.g under the Hungarian laws.: debit 16, credit 38, value 1000,
-    /// means:
-    /// Account::new(16).debit(1000);
-    /// Account::new(38).credit(1000);
+    /// Private function, create credit  
+    /// It means it makes a credit side transaction,  
+    /// So once e.g under the Hungarian laws.: debit 16, credit 38, value 1000,  
+    /// means:  
+    /// Account::new(16).debit(1000);  
+    /// Account::new(38).credit(1000);  
     fn credit(&mut self, value: u32) {
         self.c_total += value;
         self.balance -= value as i32;
     }
-    /// Private function, create debit
-    /// It means it makes a debit side transaction,
-    /// So once e.g under the Hungarian laws.: debit 16, credit 38, value 1000,
-    /// means:
-    /// Account::new(16).debit(1000);
-    /// Account::new(38).credit(1000);
+    /// Private function, create debit  
+    /// It means it makes a debit side transaction,  
+    /// So once e.g under the Hungarian laws.: debit 16, credit 38, value 1000,  
+    /// means:  
+    /// Account::new(16).debit(1000);  
+    /// Account::new(38).credit(1000);  
     fn debit(&mut self, value: u32) {
         self.d_total += value;
         self.balance += value as i32;
     }
     /// Credit from
     ///
-    /// Once you have and account selected,
-    /// you can call credit_from() to transfer a given amount of value from
+    /// Once you have and account selected,  
+    /// you can call credit_from() to transfer a given amount of value from  
     /// another account.
     ///
     /// # Examples
@@ -126,6 +125,17 @@ impl Account {
     pub fn get_account_id(&self) -> u32 {
         self.account_id
     }
+    /// Get account balance,  
+    /// returns `i32`.
+    ///
+    /// # Examples
+    /// ```rust
+    /// let account_a = Account::new(1);
+    /// let account_b = Account::new(2);
+    ///
+    /// account_a.credit_from(account_b,1000);
+    /// account_a.get_balance() // => 1000
+    /// ```
     pub fn get_balance(&self) -> i32 {
         self.balance
     }
@@ -135,22 +145,24 @@ impl Account {
     pub fn get_d_total(&self) -> u32 {
         self.d_total
     }
-}
 
-/// Print account details
-///
-/// Helper function, print details of a given account.
-/// For testing purpose.
-///
-/// # Examples
-/// let bank = Account::new(3811);
-/// print_account_details(bank);
-pub fn print_account_details(account: Account) {
-    println!(
-        "Account ({}) => balance: {}, debit total: {}, credit total: {}",
-        account.get_account_id(),
-        account.get_balance(),
-        account.get_d_total(),
-        account.get_c_total(),
-    );
+    /// Print account details
+    ///
+    /// Helper function, print details of a given account.  
+    /// For testing purpose.
+    ///
+    /// # Examples
+    /// ```rust
+    /// let bank = Account::new(3811);
+    /// bank.print_details();
+    /// ```
+    pub fn print_details(&self) {
+        println!(
+            "Account ({}) => balance: {}, debit total: {}, credit total: {}",
+            self.get_account_id(),
+            self.get_balance(),
+            self.get_d_total(),
+            self.get_c_total(),
+        )
+    }
 }
