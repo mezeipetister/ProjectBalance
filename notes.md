@@ -31,7 +31,7 @@ There was a problem handling timestamp. When I was using diesel::...get_results(
 
 Solution:
 
-```
+```rust
 extern crate chrono;
 use chrono::prelude::*;
 
