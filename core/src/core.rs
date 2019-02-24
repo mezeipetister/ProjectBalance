@@ -10,6 +10,8 @@
 //     }
 // }
 
+const LEDGER_DB_PATH : String  = "./db.yaml";
+
 /// Account struct  
 /// Represents a ledger account.
 pub struct Account {
@@ -80,6 +82,7 @@ impl Account {
         self.c_total += value;
         self.balance -= value as i32;
     }
+
     /// Private function, create debit  
     /// It means it makes a debit side transaction,  
     /// So once e.g under the Hungarian laws.: debit 16, credit 38, value 1000,  
@@ -90,6 +93,7 @@ impl Account {
         self.d_total += value;
         self.balance += value as i32;
     }
+
     /// Credit from
     ///
     /// Once you have and account selected,  
@@ -122,9 +126,12 @@ impl Account {
         self.debit(value);
         account.credit(value);
     }
+
+    /// Get account id
     pub fn get_account_id(&self) -> u32 {
         self.account_id
     }
+
     /// Get account balance,  
     /// returns `i32`.
     ///
@@ -139,11 +146,15 @@ impl Account {
     pub fn get_balance(&self) -> i32 {
         self.balance
     }
-    pub fn get_c_total(&self) -> u32 {
-        self.c_total
-    }
+
+    /// Get debit total
     pub fn get_d_total(&self) -> u32 {
         self.d_total
+    }
+
+    /// Get credit total
+    pub fn get_c_total(&self) -> u32 {
+        self.c_total
     }
 
     /// Print account details

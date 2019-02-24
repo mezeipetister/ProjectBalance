@@ -6,3 +6,7 @@ All the tests and examples are based on the Hungarian Tax Laws,
 but the software is aimd to be suitable for any double entry book keeping needs.
 
 🦕
+
+# TODO
+- [ ] Emacs license insert automation  
+https://www.emacswiki.org/emacs/ExtraLicense
