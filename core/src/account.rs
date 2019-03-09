@@ -1,16 +1,5 @@
-// struct Event {
-//     c: u32,
-//     d: u32,
-//     value: u32,
-// }
-
-// impl Event {
-//     pub fn new(c: u32, d: u32, value: u32) -> Event {
-//         Event { c, d, value }
-//     }
-// }
-
-const LEDGER_DB_PATH : String  = "./db.yaml";
+// Copyright 2019 Peter Mezei
+// License GNU AGPL V3.
 
 /// Account struct  
 /// Represents a ledger account.

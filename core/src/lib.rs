@@ -1,6 +1,5 @@
-pub mod core;
+pub mod account;
 pub mod file_io;
 
-pub fn say_hello_to(to: String) {
-    println!("Hello {}", to);
-}
+/// Path to save/load ledger database.
+const LEDGER_DB_PATH: &str = "./db.yaml";
