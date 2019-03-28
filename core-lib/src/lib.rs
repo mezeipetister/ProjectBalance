@@ -10,6 +10,7 @@ pub mod files;
 pub mod event;
 pub mod ledger;
 pub mod accounts;
+pub mod profile;
 
 extern crate chrono;
 

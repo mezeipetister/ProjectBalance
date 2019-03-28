@@ -1,6 +1,5 @@
 use chrono::prelude::*;
 use std::collections::HashMap;
-use crate::files::*;
 
 pub struct Accounts(HashMap<u32, Account>);
 
@@ -13,9 +12,9 @@ pub struct Account {
 
 impl Accounts {
     // init accounts, read the existing one, or create a new one
-    pub fn init() -> Self {
+    // pub fn init() -> Self {
         
-    }
+    // }
     
     // Add new account
     pub fn add_new_account(&mut self, id: u32, name: String) {
