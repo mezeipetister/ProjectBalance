@@ -3,6 +3,8 @@ use crate::files::*;
 use crate::event::Event;
 
 use std::fs;
+// Copyright (C) 2019 by Peter Mezei
+
 use std::fs::File;
 use std::io;
 

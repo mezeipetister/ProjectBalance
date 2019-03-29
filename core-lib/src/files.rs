@@ -1,3 +1,5 @@
+// Copyright (C) 2019 by Peter Mezei
+
 extern crate dirs;
 
 use std::fs;

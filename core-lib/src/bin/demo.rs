@@ -5,6 +5,8 @@ extern crate core_lib;
 use core_lib::*;
 
 fn main() {
+    println!("Version: {}", core_lib::VERSION);
+    
     let profiles = profile::Profiles::init();
     for p in profiles.get_profiles() {
         println!("Profile name: {}",p.get_name());

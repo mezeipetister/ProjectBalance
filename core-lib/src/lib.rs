@@ -1,3 +1,5 @@
+// Copyright (C) 2019 by Peter Mezei
+
 // TODO:
 // - CLI Accounting,
 // - CSV import,
@@ -19,6 +21,8 @@ extern crate serde_derive;
 extern crate serde_yaml;
 
 use std::time::{SystemTime, UNIX_EPOCH};
+
+pub const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
 /// Returns a timestamp as a string
 /// Now using it generating ID
