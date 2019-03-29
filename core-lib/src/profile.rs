@@ -1,6 +1,7 @@
 // Copyright (C) 2019 by Peter Mezei
 
 use crate::files::*;
+use crate::{accounts, ledger};
 use std::fs;
 use std::fs::File;
 use std::path::Path;
@@ -50,6 +51,13 @@ impl Profile {
     pub fn rename(&mut self, name: String) {
         self.name = name
     }
+
+    pub fn load_profile(&self) -> (accounts::Accounts, ledger::LedgerLog) {
+        (
+            accounts::init_accounts(self.alias.clone()),
+            ledger::init_log(self.alias.clone()),
+        )
+    }
 }
 
 pub struct Profiles {
@@ -57,41 +65,71 @@ pub struct Profiles {
 }
 
 impl Profiles {
-    // Init profiles
-    pub fn init() -> Self {
-        // Declare an empty profiles
-        let mut profiles = Profiles {
-            profiles: Vec::new(),
-        };
-
-        // Init path
-        let path = get_home_path().unwrap().join(".ledger");
-
-        // Create home path in case of it does not exist.
-        fs::create_dir_all(&path).expect("Error while creating ledger core path");
-
-        // Get a list of the app home folder content.
-        let folder_content = get_files_from_dir(&path);
-
-        // Iterate over the folder contents.
-        for item in folder_content {
-            // Declare a possible profile folder
-            let possible_profile = Path::new(&path).join(item);
-
-            // Check wheter its a folder or not.
-            if possible_profile.is_dir() {
-                // If its a folder, then try to init it it
-                try_init_from_path(&possible_profile, &mut profiles);
-            }
-        }
-
-        // Return profiles
-        profiles
-    }
-
     pub fn get_profiles(&self) -> &Vec<Profile> {
         &self.profiles
     }
+
+    // Create new profile folder and files.
+    // TODO: REFACT!
+    pub fn create_new_profile(&mut self, profile: String) {
+        let found_account = &self
+            .profiles
+            .into_iter()
+            .find(|p: Profile| p.alias == profile.clone());
+
+        // See if there is a result;
+        match found_account {
+            Some(_r) => {
+                // Create a new profile folder
+                let _profile = Profile::new(profile.clone(), profile.clone());
+                _profile.save();
+
+                // Create ledger log
+                ledger::init_log(profile.clone());
+
+                // Create accounts
+                accounts::init_accounts(profile);
+
+                self.profiles.push(_profile);
+            }
+            None => {}
+        }
+    }
+}
+
+// Init profiles
+//
+// TODO: Refact! Do we really need init in other packages?
+// Now profile should manage these staffs.
+pub fn init_profiles() -> Profiles {
+    // Declare an empty profiles
+    let mut profiles = Profiles {
+        profiles: Vec::new(),
+    };
+
+    // Init path
+    let path = get_home_path().unwrap().join(".ledger");
+
+    // Create home path in case of it does not exist.
+    fs::create_dir_all(&path).expect("Error while creating ledger core path");
+
+    // Get a list of the app home folder content.
+    let folder_content = get_files_from_dir(&path);
+
+    // Iterate over the folder contents.
+    for item in folder_content {
+        // Declare a possible profile folder
+        let possible_profile = Path::new(&path).join(item);
+
+        // Check wheter its a folder or not.
+        if possible_profile.is_dir() {
+            // If its a folder, then try to init it it
+            try_init_from_path(&possible_profile, &mut profiles);
+        }
+    }
+
+    // Return profiles
+    profiles
 }
 
 // Try to init a folder
